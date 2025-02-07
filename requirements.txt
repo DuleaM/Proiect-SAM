@@ -1,0 +1,7 @@
+Django
+djangorestframework
+requests
+python-dotenv
+selenium
+webdriver-manager
+beautifulsoup4
