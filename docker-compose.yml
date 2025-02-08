@@ -1,13 +1,15 @@
 services:
   django:
     build:
-      context: .
+      context: ./webScrapper
       dockerfile: Dockerfile
     container_name: django_app
     ports:
       - "8000:8000"
-    volumes:
-      - ./django_app:/app
+    command: >
+      bash -c "python3 manage.py makemigrations &&
+              python3 manage.py migrate &&
+              python3 manage.py runserver 0.0.0.0:8000"
 
   flask:
     build:
@@ -15,6 +17,5 @@ services:
       dockerfile: Dockerfile
     container_name: flask_app
     ports:
-      - "5000:5000"
-    volumes:
-      - ./flask_app:/app
+      - "5001:5001"
+    command: python3 app.py
